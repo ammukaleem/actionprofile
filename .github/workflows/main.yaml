@@ -1,10 +1,11 @@
 name: Build WF
 on:
-  push:
-    branches: 
-      - main
+#  push:
+#    branches: 
+#      - main
   pull-request:
-    - main
+    branches:
+      - main
   worflow-dispatch:
 
   schedule:
