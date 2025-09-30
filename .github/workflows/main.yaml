@@ -3,12 +3,20 @@ on:
   push:
     branches: 
       - main
+  pull-request:
+    - main
+  worflow-dispatch:
+
+  schedule:
+    - cron: "10 14 * * 1-5"
 jobs:
   Build:
     runs-on: ubuntu-latest
     steps: 
       - name: Code checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Maven Build
         run: mvn install
   Testing:
@@ -17,6 +25,8 @@ jobs:
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
       - name: Maven Testing
         run: mvn test 
       - name: Maven checkstyle
