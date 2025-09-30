@@ -22,7 +22,7 @@ jobs:
           name: vprofile-project
           path: taget/*.WAR
       - name: Notify if build faiure
-        if: faiure()
+        if: failure()
         run: echo "Build failed . check logs"
 
   Testing:
