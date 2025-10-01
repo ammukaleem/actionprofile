@@ -1,11 +1,14 @@
-FROM tomcat:10-jdk21
+FROM  maven:3.9.9-eclipse-temurin-21-jammy AS build_image
 LABEL "Project"="Vprofile"
-LABEL "Author"="Imran"
+LABEL "Author"="kaleem"
+COPY . /app
+WORKDIR /app
+RUN mvn inatall
+FROM tomacat:10-jdk21
+RUN rm -rf /usr/local/tomacat/webapps/*
 
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=build_image /app/tomcat/webapps/target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
-WORKDIR /usr/local/tomcat/
-VOLUME /usr/local/tomcat/webapps
+
