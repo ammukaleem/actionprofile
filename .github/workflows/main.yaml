@@ -84,6 +84,7 @@ jobs:
         id: build-image
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_REPOSITORY: vproapp 
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -f Docker-files/app/multistage/Dockerfile -t $DOCKER_HUB_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG .
