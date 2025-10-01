@@ -86,8 +86,7 @@ jobs:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -f Docker-files/app/multistage/Dockerfile \
-            -t $DOCKER_HUB_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG .
+          docker build -f Docker-files/app/multistage/Dockerfile -t $DOCKER_HUB_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG .
           
           docker push $DOCKER_HUB_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG
             
